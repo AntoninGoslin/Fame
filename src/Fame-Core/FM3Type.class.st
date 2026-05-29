@@ -60,7 +60,7 @@ FM3Type >> allProperties [
 { #category : 'enumerating' }
 FM3Type >> allPropertiesDo: block [
 
-	self allPropertiesDo: block visited: (Set new: 60)
+	self allPropertiesDo: block visited: (IdentitySet new: 60)
 ]
 
 { #category : 'enumerating' }
