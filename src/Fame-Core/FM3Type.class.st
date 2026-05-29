@@ -46,25 +46,27 @@ FM3Type >> allPrimitiveProperties [
 
 { #category : 'accessing-query' }
 FM3Type >> allProperties [
+
 	<FMProperty: #allProperties type: 'FM3.Property'>
 	<multivalued>
 	<derived>
 	| nameDict |
-	nameDict := Dictionary new: 60.	"estimated initial size."
-	self allPropertiesDo: [ :each | nameDict at: each name ifAbsentPut: [ each ] ].
+	nameDict := Dictionary new: 60. "estimated initial size."
+	self allPropertiesDo: [ :each |
+		nameDict at: each name ifAbsentPut: [ each ] ].
 	^ nameDict values asArray
-
 ]
 
 { #category : 'enumerating' }
 FM3Type >> allPropertiesDo: block [
-	self allPropertiesDo: block visited: (Set new: 60).
-	
+
+	self allPropertiesDo: block visited: (Set new: 60)
 ]
 
 { #category : 'enumerating' }
 FM3Type >> allPropertiesDo: block visited: aSet [
 	"using the set to filter duplications"
+
 	self properties do: [ :each |
 			(aSet includes: each name) ifFalse: [
 					aSet add: each name.
