@@ -66,8 +66,8 @@ FM3Type >> allPropertiesDo: block [
 FM3Type >> allPropertiesDo: block visited: aSet [
 	"using the set to filter duplications"
 	self properties do: [ :each |
-			(aSet includes: each) ifFalse: [
-					aSet add: each.
+			(aSet includes: each name) ifFalse: [
+					aSet add: each name.
 					block value: each ] ].
 
 	self traits do: [ :trait |
