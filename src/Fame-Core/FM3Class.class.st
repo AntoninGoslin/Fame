@@ -59,17 +59,13 @@ FM3Class >> accept: aVisitor [
 	^ aVisitor visitClass: self
 ]
 
-{ #category : 'accessing-query' }
-FM3Class >> allProperties [
+{ #category : 'enumerating' }
+FM3Class >> allPropertiesDo: block visited: aSet [
 
-	| nameDict |
-	nameDict := Dictionary new: 60. "estimated initial size."
-	super allProperties do: [ :each |nameDict at: each name ifAbsentPut: [ each ] ].
+	super allPropertiesDo: block visited: aSet.
+
 	self superclass ifNotNil: [ :class |
-			class allProperties do: [ :each |
-				nameDict at: each name ifAbsentPut: [ each ] ] ].
-
-	^ nameDict values asArray
+		class allPropertiesDo: block visited: aSet ]
 ]
 
 { #category : 'accessing' }
