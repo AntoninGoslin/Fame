@@ -32,15 +32,15 @@ FM3ClassTest >> testAllPropertiesDoGiveSameElementsAsAllProperties [
 
 	"collecting with allPropertiesDo:"
 	listWithPropDo := OrderedCollection new.
-	desc allPropertiesDo: [ :prop | listWithPropDo add: prop name ].
+	desc allPropertiesDo: [ :prop | listWithPropDo add: prop].
 
 	"collecting without allPropertiesDo:"
-	listWithoutPropDo := desc allProperties collect: [ :prop | prop name ].
+	listWithoutPropDo := desc allProperties asArray.
 
 	"the two lists should be equals"
 	self
-		assert: listWithPropDo asArray sorted
-		equals: listWithoutPropDo asArray sorted
+		assert: listWithPropDo asArray
+		equals: listWithoutPropDo
 ]
 
 { #category : 'tests' }
